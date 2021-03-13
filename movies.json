@@ -1,0 +1,29 @@
+let movies = `[{
+      "id": 0,
+        "movie": "A Star is Born",
+        "image": "img/star.jpg",
+        "description": "A movie about a star getting born",
+        "likes": 0
+    },
+    {
+        "id": 1,
+        "movie": "Guarded By The Leaders",
+        "image": "img/star.jpg",
+        "description": "A movie about a star getting born",
+        "likes": 0
+    },
+    {
+        "id": 2,
+        "movie": "Forsaken By The Ships",
+        "image": "img/star.jpg",
+        "description": "A movie about a star getting born",
+        "likes": 0
+    },
+    {
+        "id":3,
+        "movie": "Signs In My Destiny",
+        "image": "img/star.jpg",
+        "description": "A movie about a star getting born",
+        "likes": 0
+    }
+]`

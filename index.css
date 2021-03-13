@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hide {
+  display: none;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+.header {
+  background: black;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.sub-header {
+  background: #a0d2ff;
+  padding: 1rem;
+}
+
+.main-content {
+  background: #002241;
+  color: white;
+}
+.main-content__heading {
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-content__heading h3 {
+  width: 100%;
+}
+.main-content .movie-wrapper {
+  background: lightblue;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 1rem;
+}
+.main-content .movie-wrapper__movie-card {
+  display: inline-flex;
+  flex-direction: row;
+  width: 44vw;
+  height: 24.75vw;
+  background: black;
+  margin: 1rem;
+}
+.main-content .movie-wrapper__movie-card--left {
+  width: 42%;
+  background: white;
+  background: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.UZnMuj8Lux_1Gcsmazps4QHaLH%26pid%3DApi&f=1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.main-content .movie-wrapper__movie-card--right {
+  flex: 4;
+  padding: 1rem;
+}
+.main-content .movie-wrapper__movie-card--title {
+  font-size: larger;
+}
+.main-content .movie-wrapper__movie-card--desc {
+  font-size: smaller;
+}/*# sourceMappingURL=index.css.map */
