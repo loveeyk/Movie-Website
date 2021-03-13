@@ -1,38 +1,12 @@
 //DOM Elements
 let moviewrapper = document.querySelector('.movie-wrapper')
 
-let movielist = [...movies]
-
-//Render Cards
-function renderCards() {
-    JSON.parse(localStorage.getItem('movielist')).forEach(movie => {
-        console.log("render Cards with " + movie)
-        moviewrapper.appendChild(createMovieCard(movie))
-    })
-}
-
-function replaceCard(id, card) {
-    moviewrapper.replaceChild(card, document.getElementById(id))
-}
-
-let init = () => {
-
-    if (localStorage.getItem('liked') === null) {
-        console.log("liked is  null")
-        localStorage.setItem('liked', '')
-        localStorage.setItem('movielist', JSON.stringify(movielist))
-    }
-    renderCards()
-}
-
-
-
 // ### Helper Functions ###
 
 //Create a Movie Card
 function createMovieCard(movie) {
-    console.log("create MovieCard with " + movie)
-        //Movie Card DIV
+
+    //Movie Card DIV
     let moviecard = document.createElement('div') // Create
     moviecard.classList.add('movie-wrapper__movie-card') // Add class
     moviecard.setAttribute('id', movie.id)
@@ -40,7 +14,7 @@ function createMovieCard(movie) {
     //Left Inside DIV
     let left = document.createElement('div') //Create
     left.style.background = `url(${movie.image})` //Add Background
-    left.classList.add('movie-wrapper__movie-card--left')
+    left.classList.add('movie-wrapper__movie-card--left') //Add Class
 
     //Right Inside DIV
     let right = document.createElement('div') //Create 
@@ -61,20 +35,8 @@ function createMovieCard(movie) {
     icon.classList.add('fa', 'fa-video-camera')
     icon.setAttribute('ariaHidden', 'true')
 
-
-
     //Append everything to each other inside out
     likes.appendChild(icon) //icon to <p>
-
-    //If list of liked Video IDs on Local Storage contains the id add "liked class" to icon
-    // liked Video IDs update in handleLikeClick()
-    if (localStorage.getItem('liked').includes(movie.id)) {
-        likes.classList.add('liked')
-
-    } else { //otherwise remove it
-        likes.classList.remove('liked')
-
-    }
     right.appendChild(title) // title -> right
     right.appendChild(desc) // desc -> right
     right.appendChild(likes) // likes -> right
@@ -82,34 +44,33 @@ function createMovieCard(movie) {
     moviecard.appendChild(left) // left, right --> moviecard
     moviecard.appendChild(right)
 
-    likes.addEventListener('click', handleLikeClick)
-
     return moviecard
 }
 
-function handleLikeClick(e) {
-    let card = e.target.parentElement.parentElement.parentElement
-    let like_array = localStorage.getItem('liked').split(',')
-    let movie_array = JSON.parse(localStorage.getItem('movielist'))
+//Display all Movie Cards
 
-    if (!(like_array.includes(card.id))) {
-        console.log("INCLUDING ID")
-        movielist[card.id].likes = movie_array[card.id].likes + 1
+function displayMovieCards() {
 
-        like_array.push(card.id)
+    let updated_list = []
 
-        localStorage.setItem('liked', like_array.toString())
-
-    } else {
-        console.log("NOT INCLUDING ID")
-        movielist[card.id].likes = movie_array[card.id].likes - 1
-        console.log("decreasing now")
-        let filtered = like_array.filter(like => like !== card.id)
-        localStorage.setItem('liked', filtered.toString())
+    //Fetch up to date list from local Storage
+    for (let i = 0; i < localStorage.length; i++) {
+        updated_list.push(JSON.parse(localStorage.getItem(i)))
     }
-    localStorage.setItem('movielist', JSON.stringify(movielist)) //Save to local storage
-    replaceCard(card.id, createMovieCard(JSON.parse(localStorage.getItem('movielist'))[card.id]))
-
+    // For each movie create a Card and append to Movie Wrapper
+    updated_list.forEach(movie => {
+        moviewrapper.appendChild(createMovieCard(movie))
+    })
 }
 
-(localStorage.getItem('movielist') == null) ? init(): renderCards()
+//Save movie.json to localStorage only if no data has been changed
+function init() {
+    movies.forEach(movie => {
+        localStorage.setItem(movie.id.toString(), JSON.stringify(movie))
+    })
+}
+
+//call init function if nothing in local storage
+(localStorage.length === 0) && init()
+
+displayMovieCards();
