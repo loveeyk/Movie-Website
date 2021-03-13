@@ -59,13 +59,13 @@ body {
   color: black;
 }
 .main-content .movie-wrapper__movie-card--left {
-  margin: 2px;
-  width: 42%;
+  margin: 2px !important;
+  width: 42% !important;
   background: white;
   background: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.UZnMuj8Lux_1Gcsmazps4QHaLH%26pid%3DApi&f=1);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
 }
 .main-content .movie-wrapper__movie-card--right {
   flex: 4;
