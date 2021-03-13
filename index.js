@@ -22,7 +22,6 @@ let init = () => {
         localStorage.setItem('liked', '')
         localStorage.setItem('movielist', JSON.stringify(movielist))
     }
-
     renderCards()
 }
 
@@ -56,24 +55,26 @@ function createMovieCard(movie) {
 
     title.innerHTML = movie.title //Fill <p>'s with content
     desc.innerHTML = movie.description
-    likes.innerHTML = `${movie.likes} Likes `
+    likes.innerHTML = `${movie.likes} x `
 
     let icon = document.createElement('i') // Like symbol
     icon.classList.add('fa', 'fa-video-camera')
     icon.setAttribute('ariaHidden', 'true')
 
 
-    if (localStorage.getItem('liked').includes(movie.id)) {
-        console.log(movie.title + " matches id..adding like class")
-        likes.classList.add('liked')
-    } else {
-        likes.classList.remove('liked')
-        console.log(movie.title + " does not match id .. removing like class")
-    }
-
 
     //Append everything to each other inside out
     likes.appendChild(icon) //icon to <p>
+
+    //If list of liked Video IDs on Local Storage contains the id add "liked class" to icon
+    // liked Video IDs update in handleLikeClick()
+    if (localStorage.getItem('liked').includes(movie.id)) {
+        likes.classList.add('liked')
+
+    } else { //otherwise remove it
+        likes.classList.remove('liked')
+
+    }
     right.appendChild(title) // title -> right
     right.appendChild(desc) // desc -> right
     right.appendChild(likes) // likes -> right
@@ -89,15 +90,20 @@ function createMovieCard(movie) {
 function handleLikeClick(e) {
     let card = e.target.parentElement.parentElement.parentElement
     let like_array = localStorage.getItem('liked').split(',')
+    let movie_array = JSON.parse(localStorage.getItem('movielist'))
+
     if (!(like_array.includes(card.id))) {
-        movielist[card.id].likes = movielist[card.id].likes + 1
+        console.log("INCLUDING ID")
+        movielist[card.id].likes = movie_array[card.id].likes + 1
 
         like_array.push(card.id)
 
         localStorage.setItem('liked', like_array.toString())
 
     } else {
-        movielist[card.id].likes = movielist[card.id].likes - 1
+        console.log("NOT INCLUDING ID")
+        movielist[card.id].likes = movie_array[card.id].likes - 1
+        console.log("decreasing now")
         let filtered = like_array.filter(like => like !== card.id)
         localStorage.setItem('liked', filtered.toString())
     }
@@ -105,4 +111,5 @@ function handleLikeClick(e) {
     replaceCard(card.id, createMovieCard(JSON.parse(localStorage.getItem('movielist'))[card.id]))
 
 }
-init()
+
+(localStorage.getItem('movielist') == null) ? init(): renderCards()
