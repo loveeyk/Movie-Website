@@ -12,10 +12,11 @@
 .liked {
   color: #002241;
 }
-.liked i {
+.liked button {
+  background: #002241 !important;
   transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transform: rotate(-90deg);
-  color: #002241;
+  color: white;
   cursor: pointer;
 }
 
@@ -78,6 +79,7 @@ body {
   justify-content: space-around;
   align-items: flex-start;
   padding: 1rem;
+  transition: all 0.3s ease;
 }
 .main-content .movie-wrapper__movie-card {
   z-index: 1;

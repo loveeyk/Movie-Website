@@ -16,10 +16,11 @@
     
     .liked {
         color: $bg_main;
-        i {
+        button {
+            background: $bg_main!important;
             transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             transform: rotate( -90deg);
-            color: $bg_main;
+            color: white;
             cursor: pointer;
         }
     }
@@ -82,6 +83,7 @@
             justify-content: space-around;
             align-items: flex-start;
             padding: 1rem;
+            transition: all 0.3s ease;
             //MOVIE CARD
             &__movie-card {
                 z-index: 1;

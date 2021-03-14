@@ -1,8 +1,25 @@
 //DOM Elements
 let moviewrapper = document.querySelector('.movie-wrapper')
 
+//Handler
+function handleButtonClick(e) {
+    let id = this.parentNode.parentNode.parentNode.id //Get the id of the affected card
+    console.log(`Button in Card with ID:${id} clicked`)
 
+    let movie = JSON.parse(localStorage.getItem(id))
+    console.log(`Carddata fetched with ID: ${movie.id}`)
 
+    if (!movie.isLiked) {
+        movie.isLiked = true
+        movie.likes += 1
+    } else {
+        movie.isLiked = false
+        movie.likes -= 1
+    }
+    localStorage.setItem(id, JSON.stringify(movie))
+
+    displayMovieCards()
+}
 // ### Helper Functions ###
 //Create a Movie Card
 function createMovieCard(movie) {
@@ -24,19 +41,20 @@ function createMovieCard(movie) {
     let desc = document.createElement('p')
     let likes = document.createElement('p')
     let icon = document.createElement('i') // Like symbol
-    let button = document.createElement('button')
+    let button = document.createElement('button') // Like Button
+    icon.addEventListener('click', void 0)
+    button.addEventListener('click', handleButtonClick) //Add Event Listener to Button
 
     title.classList.add('movie-wrapper__movie-card--title') //Add classes to <p>'s
     desc.classList.add('movie-wrapper__movie-card--desc')
     likes.classList.add('movie-wrapper__movie-card--likes')
+    movie.isLiked ? likes.classList.add('liked') : likes.classList.remove('iliked') //Add liked styling
     icon.classList.add('fa', 'fa-video-camera')
-    button.classList.add('movie-wrapper__movie-card--button')
 
+    //fill with content
     title.innerHTML = movie.title //Fill <p>'s with content
     desc.innerHTML = movie.description
     likes.innerHTML = `${movie.likes} x `
-
-
 
     icon.setAttribute('ariaHidden', 'true')
 
@@ -53,17 +71,31 @@ function createMovieCard(movie) {
     return moviecard
 }
 
-//Display all Movie Cards
-function displayMovieCards() {
-
+//Get List from Local Storage
+function getListFromLS() {
     let updated_list = []
 
     //Fetch up to date list from local Storage
     for (let i = 0; i < localStorage.length; i++) {
         updated_list.push(JSON.parse(localStorage.getItem(i)))
     }
-    // For each movie create a Card and append to Movie Wrapper
-    updated_list.forEach(movie => {
+    return updated_list;
+}
+
+//Clear all Movie Cards
+function clearMovieCards() {
+    while (moviewrapper.lastElementChild) {
+        moviewrapper.removeChild(moviewrapper.lastElementChild);
+    }
+}
+//Display all Movie Cards
+function displayMovieCards() {
+
+    let movielist = getListFromLS()
+        //Clear Screen
+    clearMovieCards()
+        // For each movie create a Card and append to Movie Wrapper
+    movielist.forEach(movie => {
         moviewrapper.appendChild(createMovieCard(movie))
     })
 }
