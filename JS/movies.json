@@ -38,5 +38,36 @@ let movies = [{
         "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
         "likes": 224,
         "isLiked": false
+    },
+
+    {
+        "id": 5,
+        "title": "Titanic",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmovies%2F597%2Fmovieposter%2Ftitanic-521a6089df23f.jpg&f=1&nofb=1",
+        "description": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.s",
+        "likes": 410,
+        "isLiked": false
+    },
+
+    {
+        "id": 6,
+        "title": "Jurassic Park",
+        "image": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F1.bp.blogspot.com%2F-2eoEJjdjKZM%2FT9S4aBDvPGI%2FAAAAAAAABsU%2FAFIkGT2WqSs%2Fs1600%2FJurassic-Park-wallpaper-jurassic-park-26962234-1024-768.jpg&f=1&nofb=1",
+        "description": "A pragmatic paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+        "likes": 390,
+        "isLiked": false
+    },
+
+    {
+        "id": 7,
+        "title": "The Exorcist",
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.xC92zyz9kk5BXFumLorhHwHaHa%26pid%3DApi&f=1",
+        "description": "When a 12-year-old girl is possessed by a mysterious entity, her mother seeks the help of two priests to save her.",
+        "likes": 90,
+        "isLiked": false
     }
+
+
+
+
 ]
