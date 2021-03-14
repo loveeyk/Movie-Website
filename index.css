@@ -123,13 +123,24 @@ body {
   font-weight: bold;
   font-size: 1.5rem;
 }
-.main-content .movie-wrapper__movie-card--likes i {
+.main-content .movie-wrapper__movie-card--likes button {
+  font-size: 1.5rem;
+  background: transparent;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 10%;
   transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-.main-content .movie-wrapper__movie-card--likes i:hover {
+.main-content .movie-wrapper__movie-card--likes button:hover {
+  background: #002241;
   transform: rotate(-90deg);
-  color: blue;
   cursor: pointer;
+}
+.main-content .movie-wrapper__movie-card--likes button i {
+  transition: all 1s ease-in-out;
+}
+.main-content .movie-wrapper__movie-card--likes button i:hover {
+  color: white;
 }
 
 .footer {

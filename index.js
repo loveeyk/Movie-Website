@@ -1,8 +1,9 @@
 //DOM Elements
 let moviewrapper = document.querySelector('.movie-wrapper')
 
-// ### Helper Functions ###
 
+
+// ### Helper Functions ###
 //Create a Movie Card
 function createMovieCard(movie) {
 
@@ -22,21 +23,26 @@ function createMovieCard(movie) {
     let title = document.createElement('p') // Create 3 inside <p>'s
     let desc = document.createElement('p')
     let likes = document.createElement('p')
+    let icon = document.createElement('i') // Like symbol
+    let button = document.createElement('button')
 
     title.classList.add('movie-wrapper__movie-card--title') //Add classes to <p>'s
     desc.classList.add('movie-wrapper__movie-card--desc')
     likes.classList.add('movie-wrapper__movie-card--likes')
+    icon.classList.add('fa', 'fa-video-camera')
+    button.classList.add('movie-wrapper__movie-card--button')
 
     title.innerHTML = movie.title //Fill <p>'s with content
     desc.innerHTML = movie.description
     likes.innerHTML = `${movie.likes} x `
 
-    let icon = document.createElement('i') // Like symbol
-    icon.classList.add('fa', 'fa-video-camera')
+
+
     icon.setAttribute('ariaHidden', 'true')
 
     //Append everything to each other inside out
-    likes.appendChild(icon) //icon to <p>
+    button.appendChild(icon) //icon to <button>
+    likes.appendChild(button) //button to likes
     right.appendChild(title) // title -> right
     right.appendChild(desc) // desc -> right
     right.appendChild(likes) // likes -> right
@@ -48,7 +54,6 @@ function createMovieCard(movie) {
 }
 
 //Display all Movie Cards
-
 function displayMovieCards() {
 
     let updated_list = []
@@ -63,14 +68,14 @@ function displayMovieCards() {
     })
 }
 
-//Save movie.json to localStorage only if no data has been changed
+// Initialization - Save movie.json to localStorage 
 function init() {
     movies.forEach(movie => {
         localStorage.setItem(movie.id.toString(), JSON.stringify(movie))
     })
 }
 
-//call init function if nothing in local storage
+//call init function only if local storage is empty (first visit)
 (localStorage.length === 0) && init()
 
 displayMovieCards();

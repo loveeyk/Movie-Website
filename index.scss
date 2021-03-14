@@ -125,12 +125,23 @@
                     align-self: flex-end;
                     font-weight: bold;
                     font-size: 1.5rem;
-                    i {
+                    button {
+                        font-size: 1.5rem;
+                        background: transparent;
+                        padding: 0.5rem;
+                        border: 1px solid transparent;
+                        border-radius: 10%;
                         transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
                         &:hover {
+                            background: $bg_main;
                             transform: rotate( -90deg);
-                            color: blue;
                             cursor: pointer;
+                        }
+                        i {
+                            transition: all 1s ease-in-out;
+                            &:hover {
+                                color: white;
+                            }
                         }
                     }
                 }
