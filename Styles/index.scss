@@ -3,11 +3,17 @@
     $color_light: white;
     $color_dark: black;
     $color_dark2:#000311f5;
-    $bg_main: #002241;
+    $bg_main: #00182e;
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Nunito', sans-serif;
+        background: $bg_main;
+        height: 100vh;
     }
     
     .hide {
@@ -26,11 +32,6 @@
         }
     }
     
-    body {
-        font-family: 'Nunito', sans-serif;
-        background: black;
-    }
-    
     .header {
         background: $color_dark;
         color: $color_light;
@@ -41,7 +42,7 @@
     .sub-header {
         background: $color_dark2;
         padding: 1rem 2rem;
-        color: #b6f1ff;
+        color: #57d8f8;
         border-top: 1px solid white;
         border-bottom: 1px solid white;
     }
@@ -54,6 +55,7 @@
             position: absolute;
             background: linear-gradient(0deg, black, rgba(0, 0, 0, 0.756), black);
         }
+        min-height: 60vh;
         position: relative;
         color: white;
         background-size: cover!important;
