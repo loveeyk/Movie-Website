@@ -18,7 +18,10 @@ function handleButtonClick(e) {
     }
     localStorage.setItem(id, JSON.stringify(movie))
 
-    displayMovieCards()
+    //displayMovieCards()
+    //just change button element and textspan
+    this.previousElementSibling.innerHTML = ` ${movie.likes} x `
+    this.parentNode.classList.toggle('liked')
 }
 // ### Helper Functions ###
 //Create a Movie Card
@@ -40,9 +43,10 @@ function createMovieCard(movie) {
     let title = document.createElement('p') // Create 3 inside <p>'s
     let desc = document.createElement('p')
     let likes = document.createElement('p')
+    let span = document.createElement('span')
     let icon = document.createElement('i') // Like symbol
     let button = document.createElement('button') // Like Button
-    icon.addEventListener('click', void 0)
+
     button.addEventListener('click', handleButtonClick) //Add Event Listener to Button
 
     title.classList.add('movie-wrapper__movie-card--title') //Add classes to <p>'s
@@ -54,12 +58,13 @@ function createMovieCard(movie) {
     //fill with content
     title.innerHTML = movie.title //Fill <p>'s with content
     desc.innerHTML = movie.description
-    likes.innerHTML = `${movie.likes} x `
+    span.innerHTML = `${movie.likes} x `
 
     icon.setAttribute('ariaHidden', 'true')
 
     //Append everything to each other inside out
     button.appendChild(icon) //icon to <button>
+    likes.appendChild(span)
     likes.appendChild(button) //button to likes
     right.appendChild(title) // title -> right
     right.appendChild(desc) // desc -> right

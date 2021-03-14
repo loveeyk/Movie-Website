@@ -14,10 +14,11 @@
 }
 .liked button {
   background: #002241 !important;
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) !important;
   transform: rotate(-90deg);
   color: white;
   cursor: pointer;
+  box-shadow: 37px 0px 23px #4ea8f95c !important;
 }
 
 body {
