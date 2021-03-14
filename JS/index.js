@@ -27,7 +27,7 @@ button_sortDesc.addEventListener('click', () => {
 input_search.addEventListener('input', handleSearchInput)
 
 //Handler ###
-//Adds 1 to correct array entry
+//Adds 1+like to correct array entry
 function handleButtonClick(e) {
     let id = this.parentNode.parentNode.parentNode.id //Get the id of the affected card
     console.log(`Button in Card with ID:${id} clicked`)

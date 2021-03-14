@@ -33,6 +33,9 @@ body {
   padding: 1rem;
   text-align: center;
 }
+.header i {
+  color: #57d8f8;
+}
 
 .sub-header {
   background: #000311f5;
@@ -74,6 +77,11 @@ body {
 }
 .main-content__heading div {
   z-index: 1;
+  transition: color 0.3s ease;
+}
+.main-content__heading div:hover {
+  cursor: pointer;
+  color: #57d8f8;
 }
 .main-content__search {
   z-index: 1;
@@ -146,7 +154,7 @@ body {
   transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 .main-content .movie-wrapper__movie-card--likes button:hover {
-  background: #00182e;
+  background: #57d8f8;
   transform: rotate(-90deg);
   cursor: pointer;
 }
@@ -186,6 +194,10 @@ body {
 }
 .footer__social--icons i {
   padding: 0 1rem;
+}
+.footer__social--icons i:hover {
+  color: #57d8f8;
+  cursor: pointer;
 }
 
 @media (max-width: 1023px) {
