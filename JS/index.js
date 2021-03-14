@@ -2,26 +2,32 @@
 let moviewrapper = document.querySelector('.movie-wrapper')
 let button_sortAsc = document.querySelector('#asc')
 let button_sortDesc = document.querySelector('#desc')
-console.log(button_sortAsc)
+let input_search = document.querySelector('#search')
+
+//Variables
 let isAsc = false;
 
+//Event Listener
 button_sortAsc.addEventListener('click', () => {
     console.log("clicked asc")
     isAsc = false;
-    button_sortDesc.classList.remove('hide')
-    button_sortAsc.classList.add('hide')
-    displayMovieCards()
+    button_sortDesc.classList.remove('hide') //Show Desc
+    button_sortAsc.classList.add('hide') //Hide Asc
+    let movielist = getListFromLS()
+    displayMovieCards(movielist)
 })
 button_sortDesc.addEventListener('click', () => {
     console.log("clicked desc")
     isAsc = true;
-    button_sortAsc.classList.remove('hide')
-    button_sortDesc.classList.add('hide')
-    displayMovieCards()
+    button_sortAsc.classList.remove('hide') //show Asc
+    button_sortDesc.classList.add('hide') //Hide Desc
+    let movielist = getListFromLS()
+    displayMovieCards(movielist)
 })
+input_search.addEventListener('input', handleSearchInput)
 
-
-//Handler
+//Handler ###
+//Adds 1 to correct array entry
 function handleButtonClick(e) {
     let id = this.parentNode.parentNode.parentNode.id //Get the id of the affected card
     console.log(`Button in Card with ID:${id} clicked`)
@@ -44,6 +50,23 @@ function handleButtonClick(e) {
     this.parentNode.classList.toggle('liked')
 }
 
+// Filters movie array for searched word, clears screen and shows cards
+function handleSearchInput(e) {
+    let movielist = getListFromLS()
+    let filtered_list = movielist.filter(movie => movie.title.toLowerCase().includes(this.value.toLowerCase()))
+
+    clearMovieCards() //First Clear all cards
+
+    // IF the filtered list is empty(=no searchresults found) display a span in moviewrapper
+    if (filtered_list.length === 0) {
+        let span = document.createElement('span')
+        span.style.zIndex = 1;
+        span.innerHTML = "Sorry, nothing found..."
+        moviewrapper.appendChild(span)
+    } else { //otherwise display the filtered results
+        displayMovieCards(filtered_list)
+    }
+}
 
 // ### Helper Functions ###
 //Create a Movie Card
@@ -116,13 +139,16 @@ function clearMovieCards() {
     }
 }
 //Display all Movie Cards
-function displayMovieCards() {
+function displayMovieCards(movielist) {
 
-    let movielist = getListFromLS()
-        //Clear Screen
+    //Clear Screen
     clearMovieCards()
-    movielist.sort((m1, m2) => m2.likes - m1.likes)
-        // For each movie create a Card and append to Movie Wrapper
+
+    //Sort Descending
+
+    movielist.sort((m1, m2) => isAsc ? (m1.likes - m2.likes) : (m2.likes - m1.likes))
+
+    // For each movie create a Card and append to Movie Wrapper
     movielist.forEach(movie => {
         moviewrapper.appendChild(createMovieCard(movie))
     })
@@ -133,9 +159,10 @@ function init() {
     movies.forEach(movie => {
         localStorage.setItem(movie.id.toString(), JSON.stringify(movie))
     })
+    isAsc = false
 }
 
 //call init function only if local storage is empty (first visit)
 (localStorage.length === 0) && init()
-
-displayMovieCards();
+let movielist = getListFromLS()
+displayMovieCards(movielist);
