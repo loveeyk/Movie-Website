@@ -1,5 +1,25 @@
 //DOM Elements
 let moviewrapper = document.querySelector('.movie-wrapper')
+let button_sortAsc = document.querySelector('#asc')
+let button_sortDesc = document.querySelector('#desc')
+console.log(button_sortAsc)
+let isAsc = false;
+
+button_sortAsc.addEventListener('click', () => {
+    console.log("clicked asc")
+    isAsc = false;
+    button_sortDesc.classList.remove('hide')
+    button_sortAsc.classList.add('hide')
+    displayMovieCards()
+})
+button_sortDesc.addEventListener('click', () => {
+    console.log("clicked desc")
+    isAsc = true;
+    button_sortAsc.classList.remove('hide')
+    button_sortDesc.classList.add('hide')
+    displayMovieCards()
+})
+
 
 //Handler
 function handleButtonClick(e) {
@@ -23,6 +43,8 @@ function handleButtonClick(e) {
     this.previousElementSibling.innerHTML = ` ${movie.likes} x `
     this.parentNode.classList.toggle('liked')
 }
+
+
 // ### Helper Functions ###
 //Create a Movie Card
 function createMovieCard(movie) {
@@ -99,6 +121,7 @@ function displayMovieCards() {
     let movielist = getListFromLS()
         //Clear Screen
     clearMovieCards()
+    movielist.sort((m1, m2) => m2.likes - m1.likes)
         // For each movie create a Card and append to Movie Wrapper
     movielist.forEach(movie => {
         moviewrapper.appendChild(createMovieCard(movie))
